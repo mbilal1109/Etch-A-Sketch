@@ -1,6 +1,7 @@
 const container = document.querySelector('#container');
-const changeGridButton = document.querySelector("button");
-let innerContainer = null;
+const changeGridButton = document.querySelector("#grid-button");
+const resetButton = document.querySelector("#reset-button");
+let innerContainer = "";
 let grid = 0;
 
 function getDefaultGrid() {
@@ -22,10 +23,10 @@ function createGrid(grid) {
     else {
         /**
          * Removes the inner container divs before creating
-         * the ones user requested.
-         * innerHTML = '' -> removes all html from the container div.
+         * the ones user requested
+         * innerHTML = '' -> removes all html from the container div
          */
-        // container.innerHTML = '';
+        container.innerHTML = '';
         let totalDivs = grid * grid;
         for (let i = 0; i < totalDivs; i++) {
             innerContainer = document.createElement('div');
@@ -34,10 +35,12 @@ function createGrid(grid) {
             container.style.setProperty('grid-template-columns', 'repeat(' + grid + ', 1fr)');
             container.style.setProperty('grid-template-rows', 'repeat(' + grid + ', 1fr)');
         }
+        getHoverEffect();
     }
 }
 
 createGrid(grid);
+getHoverEffect();
 changeGridButton.addEventListener('click', function () {
     grid = prompt('Enter Grid');
     if(grid >= 100) {
@@ -45,3 +48,16 @@ changeGridButton.addEventListener('click', function () {
     }
     createGrid(grid);
 });
+
+function getHoverEffect() {
+  const innerDivs = document.querySelectorAll(".inner-container");
+  innerDivs.forEach((innerDiv) => {
+    innerDiv.addEventListener("mousemove", function () {
+      innerDiv.classList.add("hover-effect");
+    });
+  });
+}
+
+resetButton.addEventListener('click', function() {
+    window.location.reload();
+})
