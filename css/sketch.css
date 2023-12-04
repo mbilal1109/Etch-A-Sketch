@@ -16,6 +16,15 @@ h1 {
     padding-top: 4rem;
 }
 
+footer {
+    font-family: 'Orbitron', sans-serif;
+    color: brown;
+    font-weight: bold;
+    text-align: center;
+    margin-top: auto;
+    padding-top: 60px;
+}
+
 #container {
     display: grid;
     background-color: rgba(255, 255, 255, 0.8);
